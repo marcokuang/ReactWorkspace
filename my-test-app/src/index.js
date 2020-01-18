@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import CommentDetail from './CommentDetail.js';
+import Faker from 'faker';
 
 
 const App = () => {
@@ -22,7 +23,7 @@ const App = () => {
   {
     author: 'Erika Q',
     time: 'Today at 12pm',
-    text: 'I like it a lot!'
+    text: 'I like it a lot!!'
   }
 ]
     //   comment layout has 2 major components: 
@@ -35,7 +36,14 @@ const App = () => {
   <div className='ui container comments'>  
     {
       commentExample.map(comment => {
-        return <CommentDetail author={comment.author} timeAgo={comment.time} text={comment.text}/>
+        return (
+        <CommentDetail 
+          author={comment.author} 
+          timeAgo={comment.time} 
+          content={comment.text}
+          avatar={Faker.image.avatar()}
+        />
+        );
       })
     }
   </div>);
