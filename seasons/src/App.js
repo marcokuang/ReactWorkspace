@@ -1,13 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-        <h1>Hi How are you</h1>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props){
+    super(props);
+
+    this.state = {lat: null};
+
+    window.navigator.geolocation.getCurrentPosition(
+      (position) => {
+        console.log(position);
+        this.setState({lat: position.coords.latitude});
+      },
+      err => console.error(err)
+    );
+  }
+
+  render(){
+    return (
+      <div className="App">
+          <h1>Lattitude: {this.state.lat}</h1>
+      </div>
+    );
+    }
 }
 
 export default App;
