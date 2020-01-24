@@ -1,20 +1,23 @@
 import React from 'react';
 
 const SeasonDisplay = props => {
+    const month = new Date().getMonth();
+
     return (
         <div>
             Latitude: {props.lat}
             <br />
-            Season: {getSeason(4, props.lat)}
+            Season: {getSeason(props.lat, month)}
+            <br />
+            <h1>
+                {getSeason(props.lat, month) === 'Summer' ? "Let's head to beach!" : "Burrr, it's chilly"}
+            </h1>
         </div>
     );
 }
 
-function getSeason(month, lat) {
+function getSeason(lat, month) {
     let season = '';
-
-    const date = new Date();
-    month = date.getMonth().toLocaleString();
 
     if ((month < 3 && month >= 0) || (month >= 9 && month <= 11)) {
         // season is winter
