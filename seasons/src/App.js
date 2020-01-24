@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import SeasonDisplay from "./SeasonDisplay";
+import Spinner from "./spinner";
 
 class App extends React.Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class App extends React.Component {
     if (!this.state.lat && !this.state.errorMsg) {
       return (
         <div className="App">
-          <h1>Loading...</h1>
+          <Spinner />
         </div>
       );
     } else if (this.state.lat) {

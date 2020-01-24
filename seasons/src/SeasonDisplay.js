@@ -22,20 +22,26 @@ const SeasonDisplay = props => {
       : SeasonConfig.Winter.iconName;
 
   return (
-    <div className="season-display">
+    <div
+      className={`${
+        season === SeasonConfig.Summer.seasonText
+          ? SeasonConfig.Summer.seasonText.toLowerCase()
+          : SeasonConfig.Winter.seasonText.toLowerCase()
+      } season-display`}
+    >
       <div>
         <p>Latitude: {props.lat}</p>
       </div>
       <div>
         <p>Season: {season}</p>
       </div>
-      <i className={`${icon} massive icon blue icon-left`}></i>
+      <i className={`${icon} massive icon icon-left`}></i>
       <h1>
         {season === SeasonConfig.Summer.seasonText
           ? SeasonConfig.Summer.text
           : SeasonConfig.Winter.text}
       </h1>
-      <i className={`${icon} massive icon blue icon-right`}></i>
+      <i className={`${icon} massive icon icon-right`}></i>
     </div>
   );
 };

@@ -56,3 +56,27 @@
   align-items: center;
   flex-direction: column;
 }
+
+.summer {
+  background-color: sandybrown;
+}
+
+.winter {
+  background-color: teal;
+}
+
+
+.summer.season-display i{
+  color: red;
+}
+
+.winter.season-display i{
+  color: lavender;
+}
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+}
