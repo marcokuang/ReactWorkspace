@@ -1,5 +1,7 @@
 import React from "react";
+import axios from "axios";
 import SearchBar from "./SearchBar";
+import Keys from "./Keys";
 import "../css/App.css";
 
 class App extends React.Component {
@@ -7,9 +9,21 @@ class App extends React.Component {
     term: ""
   };
 
+  location = "https://api.unsplash.com";
+  searchPhotos = "/search/photos";
+
   onSearchSubmit(term) {
     console.log(`App Component >>> ${term}`);
     this.setState({ term: term });
+
+    axios.get(this.location + this.searchPhotos, {
+      params: {
+        query: term
+      },
+      headers: {
+        Authorization: `Client-ID ${Keys.AccessKey}`
+      }
+    });
   }
 
   render() {

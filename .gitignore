@@ -75,3 +75,6 @@ typings/
 
 # macOS system files
 .DS_Store
+
+#Keys
+Keys.js
