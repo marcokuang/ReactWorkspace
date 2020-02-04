@@ -1,5 +1,4 @@
 import React from "react";
-import Axios from "axios";
 
 class SearchBar extends React.Component {
   state = { term: "" };
