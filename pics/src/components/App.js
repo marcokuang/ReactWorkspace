@@ -1,6 +1,7 @@
 import React from "react";
 //import axios from "axios";
 import SearchBar from "./SearchBar";
+import ImageList from "./ImageList";
 import unsplash from "../api/Unsplash";
 //import Keys from "../api/Keys";
 import "../css/App.css";
@@ -61,6 +62,7 @@ class App extends React.Component {
         <SearchBar onSubmit={this.onSearchSubmit2} />
         <div>Keyword: {this.state.term}</div>
         <div>Found: {this.state.images.length} images</div>
+        <ImageList images={this.state.images} />
       </div>
     );
   }
