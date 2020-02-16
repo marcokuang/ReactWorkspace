@@ -1,6 +1,5 @@
 import React from "react";
 
-
 class SearchBar extends React.Component {
   state = { keyword: "", videos: [] };
 
@@ -8,8 +7,6 @@ class SearchBar extends React.Component {
     // console.log(event.target.value);
     this.setState({ keyword: event.target.value });
   };
-
-
 
   render() {
     return (

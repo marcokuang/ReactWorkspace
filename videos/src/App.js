@@ -5,11 +5,11 @@ import youtube from "./api/Youtube";
 import "./App.css";
 
 class App extends React.Component {
-  state = {videos: []}
+  state = { videos: [] };
 
   onKeywordSubmit = event => {
     event.preventDefault();
-    this.getYoutubeResults(event.target.value);
+    this.getYoutubeResultsUsingAwaitAsync(event.target.value);
   };
 
   getYoutubeResults = keyword => {
@@ -20,18 +20,31 @@ class App extends React.Component {
           q: keyword
         }
       })
-      .then((response) => {
-        this.setState({videos: response.data.items});
+      .then(response => {
+        this.setState({ videos: response.data.items });
       })
       .catch(function(err) {
         console.error(err);
       });
   };
 
+  getYoutubeResultsUsingAwaitAsync = async keyword => {
+    try {
+      const response = await youtube.get("/search/haha", {
+        params: {
+          q: keyword
+        }
+      });
+      this.setState({ videos: response.data.items });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   render() {
     return (
       <div className="ui container">
-        <SearchBar onFormSubmit={this.onKeywordSubmit}/>
+        <SearchBar onFormSubmit={this.onKeywordSubmit} />
       </div>
     );
   }
