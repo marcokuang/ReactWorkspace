@@ -1,16 +1,24 @@
 import React from "react";
-import VideoItem from './VideoItem';
+import VideoItem from "./VideoItem";
 
 class VideoList extends React.Component {
   state = { selectedID: -1 };
 
-  onHandleSelectedVideo = event => {
-    console.log(event.target.value);
+  onHandleSelectedVideo = (event, index) => {
+    console.log(index);
+    this.setState({selectedID: index});
   };
 
   render() {
-    const videoList = this.props.videos.map(video => {
-      return <VideoItem video={video} key={video.etag} onClickHandler={this.onHandleSelectedVideo}/>;
+    const videoList = this.props.videos.map((video, index) => {
+      return (
+        <VideoItem
+          video={video}
+          key={video.etag}
+          onClickHandler={this.onHandleSelectedVideo}
+          index={index}
+        />
+      );
     });
 
     return videoList;

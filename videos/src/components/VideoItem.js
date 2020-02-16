@@ -2,7 +2,15 @@ import React from "react";
 
 class VideoItem extends React.Component {
   render() {
-    return <div onClick={this.props.onClickHandler}>{this.props.video.snippet.title}</div>;
+    const video = this.props.video;
+    return (
+      <div
+        onClick={event => this.props.onClickHandler(event, this.props.index)}
+      >
+        <img src={video.snippet.thumbnails.high.url} />
+        {video.snippet.title}
+      </div>
+    );
   }
 }
 
