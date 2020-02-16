@@ -1,17 +1,23 @@
 import React from "react";
 
 class SearchBar extends React.Component {
-  state = { keyword: "", videos: [] };
+  state = { keyword: "" };
 
   searchBarOnChange = event => {
     // console.log(event.target.value);
     this.setState({ keyword: event.target.value });
   };
 
+  formOnSubmitHandler = event => {
+    event.preventDefault();
+    // pass the keyword to the parent component
+    this.props.onFormSubmit(this.state.keyword);
+  };
+
   render() {
     return (
       <div className="search-bar ui segment">
-        <form className="ui form" onSubmit={this.props.onFormSubmit}>
+        <form className="ui form" onSubmit={this.formOnSubmitHandler}>
           <div className="field">
             <label>Youtube Video Search</label>
             <input

@@ -7,7 +7,7 @@ export default axios.create({
   baseURL: baseURL,
   params: {
     part: "snippet",
-    maxResults: 10,
+    maxResults: 11,
     key: Keys.YOUTUBE_API_KEY,
     type: "video"
   }
