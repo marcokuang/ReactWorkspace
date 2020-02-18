@@ -3,6 +3,7 @@ import logo from "./logo.svg";
 import SearchBar from "./components/SearchBar";
 import youtube from "./api/Youtube";
 import VideoList from "./components/VideoList";
+import VideoDetail from './components/VideoDetail';
 import "./App.css";
 
 class App extends React.Component {
@@ -51,6 +52,7 @@ class App extends React.Component {
     return (
       <div className="ui container">
         <SearchBar onFormSubmit={this.onKeywordSubmit} />
+        <VideoDetail video={this.state.selectedVideo}/>
         <VideoList videos={this.state.videos} onVideoSelect={this.onVideoSelect}/>
       </div>
     );

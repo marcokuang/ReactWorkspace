@@ -28,7 +28,7 @@ class SearchBar extends React.Component {
               onChange={this.searchBarOnChange}
             ></input>
           </div>
-          <div>{this.state.keyword}</div>
+          {/* <div>{this.state.keyword}</div> */}
         </form>
       </div>
     );

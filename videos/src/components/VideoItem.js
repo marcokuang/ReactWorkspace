@@ -7,7 +7,7 @@ class VideoItem extends React.Component {
     return (
       <div
         className="item video-item"
-        onClick={event => this.props.onClickHandler(video, this.props.index)}
+        onClick={() => this.props.onClickHandler(video, this.props.index)}
       >
         <img className="ui image" src={video.snippet.thumbnails.high.url} />
         <div className="content">
