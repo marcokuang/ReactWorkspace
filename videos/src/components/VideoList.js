@@ -2,11 +2,12 @@ import React from "react";
 import VideoItem from "./VideoItem";
 
 class VideoList extends React.Component {
-  state = { selectedID: -1 };
+  state = { selectedVideoIndex: -1 };
 
-  onHandleSelectedVideo = (event, index) => {
+  onHandleSelectedVideo = (video, index) => {
     console.log(index);
-    this.setState({selectedID: index});
+    this.setState({ selectedVideoIndex: index });
+    this.props.onVideoSelect(video);
   };
 
   render() {
@@ -21,7 +22,7 @@ class VideoList extends React.Component {
       );
     });
 
-    return videoList;
+    return <div className="ui relaxed divided list">{videoList}</div>;
   }
 }
 
