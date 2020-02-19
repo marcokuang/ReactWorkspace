@@ -15,7 +15,7 @@ class VideoList extends React.Component {
       return (
         <VideoItem
           video={video}
-          key={video.etag}
+          key={video.id.videoId}
           onClickHandler={this.onHandleSelectedVideo}
           index={index}
         />
