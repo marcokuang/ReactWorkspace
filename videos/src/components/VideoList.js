@@ -1,5 +1,6 @@
 import React from "react";
 import VideoItem from "./VideoItem";
+import  "../css/VideoList.css"
 
 class VideoList extends React.Component {
   state = { selectedVideoIndex: -1 };
@@ -22,7 +23,7 @@ class VideoList extends React.Component {
       );
     });
 
-    return <div className="ui relaxed divided list">{videoList}</div>;
+    return <div className="ui relaxed divided list scroll-list">{videoList}</div>;
   }
 }
 
