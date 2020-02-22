@@ -6,4 +6,9 @@
 
 .video-item.item img{
     max-width: 180px;
+    width: 60%;
+}
+
+.video-item.item.content{
+    width: 40%;
 }
