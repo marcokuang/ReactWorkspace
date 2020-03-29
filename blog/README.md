@@ -1,6 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-This app is to demostrate React Redux intergration
+Redux       -> redux library
+react-redux -> integration layer between react and redux
+axios       -> helps with network requests
+redux-thunk -> middleware to help us make requests in a redux application
 
 ## Available Scripts
 
