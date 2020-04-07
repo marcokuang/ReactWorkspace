@@ -5,6 +5,8 @@ react-redux -> integration layer between react and redux
 axios       -> helps with network requests
 redux-thunk -> middleware to help us make requests in a redux application
 
+## test
+
 ## Available Scripts
 
 In the project directory, you can run:
