@@ -20,8 +20,11 @@ export const fetchPosts = () =>
 //   dispatch({ type: "FETCH_USER", payload: response.data });
 // };
 
-export const fetchUser = (id) => (dispatch) => {
-  _fetchUser(id, dispatch);
+export const fetchUser = (id) => async (dispatch) => {
+  //_fetchUser(id, dispatch);
+
+  const response = await jsonPlaceholder.get(`/users/${id}`);
+  dispatch({ type: "FETCH_USER", payload: response.data });
 };
 
 //user the lodash memoize funtion to
@@ -35,11 +38,22 @@ export const fetchPostsAndUsers = () => async (dispatch, getState) => {
   // NOTE we need to dispatch the results of calling the action creator
   // await will make sure the API request call gets invoked before further execution
   await dispatch(fetchPosts());
-  const posts = getState().posts;
-  const userIds = _.map(posts, "userId");
-  const uniqueUserIds = _.uniq(userIds);
 
-  uniqueUserIds.forEach(async (id) => {
-    await dispatch(fetchUser(id));
-  });
+  // Refactored into _.chain()
+
+  // const posts = getState().posts;
+  // const userIds = _.map(posts, "userId");
+  // const uniqueUserIds = _.uniq(userIds);
+
+  // uniqueUserIds.forEach(async (id) => {
+  //   await dispatch(fetchUser(id));
+  // });
+
+  _.chain(getState().posts)
+    .map("userId")
+    .uniq()
+    .forEach(async (id) => {
+      await dispatch(fetchUser(id));
+    })
+    .value();
 };
