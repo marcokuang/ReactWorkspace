@@ -1,5 +1,6 @@
 import React from "react";
-import { fetchUser } from "../actions";
+// remove fetchUser action creator after refactoring FetchPostAndUsers action creator
+// import { fetchUser } from "../actions";
 import { connect } from "react-redux";
 
 class UserHeader extends React.Component {
@@ -10,7 +11,7 @@ class UserHeader extends React.Component {
     //     this.props.fetchUser(this.props.userId);
     //   }
     // }
-    this.props.fetchUser(this.props.userId);
+    // this.props.fetchUser(this.props.userId);
   }
 
   renderUser() {
@@ -39,4 +40,8 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchUser })(UserHeader);
+export default connect(
+  mapStateToProps
+  // remove fetchUser action creator
+  // ,{ fetchUser }
+)(UserHeader);
