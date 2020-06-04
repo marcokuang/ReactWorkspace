@@ -31,7 +31,8 @@ class GoogleAuth extends React.Component {
   onAuthChange = (isSignedIn) => {
     if (isSignedIn) {
       // it calls the redux action creator for sign in or sign out actions
-      this.props.signIn();
+      // a user id param will be passed to the action creator.
+      this.props.signIn(this.auth.currentUser.get().getId());
     } else {
       this.props.signOut();
     }
@@ -54,6 +55,7 @@ class GoogleAuth extends React.Component {
     if (this.props.isSignedIn === null) {
       return null;
     } else if (this.props.isSignedIn) {
+      console.log(this.props.userId);
       return (
         <button className="ui button google red" onClick={this.onSignOutClick}>
           <i className="google icon"></i>
@@ -76,7 +78,7 @@ class GoogleAuth extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { isSignedIn: state.auth.isSignedIn };
+  return { isSignedIn: state.auth.isSignedIn, userId: state.auth.userId };
 };
 
 export default connect(mapStateToProps, { signIn, signOut })(GoogleAuth);
