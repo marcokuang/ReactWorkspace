@@ -11,7 +11,6 @@ export default (state = INIT_STATE, action) => {
       console.log(action.payload);
       return { ...state, isSignedIn: true, userId: action.payload };
     }
-
     case SIGN_OUT:
       return { ...state, isSignedIn: false, userId: null };
     default:
