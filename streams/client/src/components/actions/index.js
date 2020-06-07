@@ -1,3 +1,4 @@
+import streams from "../apis/streams";
 // action creators
 import { SIGN_IN, SIGN_OUT } from "./types";
 
@@ -15,4 +16,9 @@ const signOut = () => {
   };
 };
 
-export { signIn, signOut };
+const createStream = (formValues) => async (dispatch) => {
+  // return a redux thunk action creator with async method
+  streams.post("/streams", formValues);
+};
+
+export { signIn, signOut, createStream };
