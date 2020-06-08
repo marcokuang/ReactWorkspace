@@ -17,7 +17,7 @@ class GoogleAuth extends React.Component {
         .then(() => {
           // getAuthInstance is to allow user to sign in
           this.auth = window.gapi.auth2.getAuthInstance();
-          console.log(this.auth.isSignedIn.get());
+          //console.log(this.auth.isSignedIn.get());
           // after the auth instance is retrived, use the getter to get the sign in status
           //this.setState({ isSignedIn: this.auth.isSignedIn.get() });
           this.onAuthChange(this.auth.isSignedIn.get());
@@ -55,7 +55,7 @@ class GoogleAuth extends React.Component {
     if (this.props.isSignedIn === null) {
       return null;
     } else if (this.props.isSignedIn) {
-      console.log(this.props.userId);
+      //console.log(this.props.userId);
       return (
         <button className="ui button google red" onClick={this.onSignOutClick}>
           <i className="google icon"></i>
