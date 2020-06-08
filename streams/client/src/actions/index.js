@@ -53,10 +53,10 @@ const deleteStream = (id) => async (dispatch) => {
 
 const editStream = (id, formValues) => async (dispatch) => {
   // return a redux thunk action creator with async method
-  const response = await streams.put(`/streams/${id}`, formValues);
+  await streams.put(`/streams/${id}`, formValues);
 
   // dispatch an action of Create Stream after the response from the axios api is successful
-  dispatch({ type: EDIT_STREAM, payload: response.data });
+  dispatch({ type: EDIT_STREAM, payload: id });
 };
 
 export {
