@@ -1,4 +1,5 @@
 import streams from "../apis/streams";
+import history from "../history";
 // action creators
 import {
   SIGN_IN,
@@ -34,6 +35,9 @@ const createStream = (formValues) => async (dispatch, getState) => {
 
   // dispatch an action of Create Stream after the response from the axios api is successful
   dispatch({ type: CREATE_STREAM, payload: response.data, userId });
+
+  // Prammatic navigation to get the user back to the root route
+  history.push("/");
 };
 
 const fetchStreams = () => async (dispatch) => {
