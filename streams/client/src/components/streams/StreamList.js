@@ -52,7 +52,7 @@ class StreamList extends React.Component {
         </div>
       );
     });
-
+    //console.log(this.props.streams);
     return list;
   }
 
@@ -72,7 +72,7 @@ class StreamList extends React.Component {
 // and map the userid from redux store to currentUserId
 const mapStateToProps = (state) => {
   return {
-    streams: _.values(state.streams),
+    streams: Object.values(state.streams),
     currentUserId: state.auth.userId,
     isSignedIn: state.auth.isSignedIn,
   };

@@ -11,6 +11,9 @@ import {
 export default (state = {}, action) => {
   switch (action.type) {
     case FETCH_STREAM:
+      //creating a new copy of the state object using spread operator
+      // newState[action.payload.id] = action.payload
+      // the API will return a new record to the payload
       return {
         ...state,
         [action.payload.id]: action.payload,

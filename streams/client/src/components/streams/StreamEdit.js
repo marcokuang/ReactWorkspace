@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchStream, editStream } from "../../actions";
 import StreamForm from "./StreamForm";
+import _ from "lodash";
 
 // for react router componets, we alwasys need to make sure each component needs
 // to be designed to work in isolation (fetch its own data)
@@ -13,7 +14,7 @@ class StreamEdit extends React.Component {
   }
 
   onSubmit = (formValues) => {
-    console.log(formValues);
+    //console.log(formValues);
     this.props.editStream(this.props.match.params.id, formValues);
   };
 
@@ -21,13 +22,13 @@ class StreamEdit extends React.Component {
     if (!this.props.stream) {
       return <div>Loading...</div>;
     }
-    console.log(this.props.stream);
+
     return (
       <div>
         <h3>StreamEdit - Title: {this.props.stream.title} </h3>
         <StreamForm
           onSubmit={this.onSubmit}
-          initialValues={this.props.stream}
+          initialValues={_.pick(this.props.stream, "title", "description")}
         />
       </div>
     );

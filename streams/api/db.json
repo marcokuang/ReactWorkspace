@@ -30,9 +30,14 @@
     },
     {
       "title": "do you like potato",
-      "description": "how to cook potatoes hahaha",
-      "userId": "107202500904078042967",
+      "description": "how to cook potatoes haLLL",
       "id": 6
+    },
+    {
+      "title": "test patch",
+      "description": "test patch request - -> after patch",
+      "userId": "107202500904078042967",
+      "id": 7
     }
   ]
 }
