@@ -56,7 +56,9 @@ const fetchStream = (id) => async (dispatch) => {
 const deleteStream = (id) => async (dispatch) => {
   const response = await streams.delete(`/streams/${id}`);
 
-  dispatch({ type: DELETE_STREAM, payload: response.data });
+  dispatch({ type: DELETE_STREAM, payload: id });
+  // Prammatic navigation to get the user back to the root route
+  history.push("/");
 };
 
 const editStream = (id, formValues) => async (dispatch) => {

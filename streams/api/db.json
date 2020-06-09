@@ -17,27 +17,21 @@
       "id": 3
     },
     {
-      "title": "test user id 2",
-      "description": "aksdfkl",
-      "userId": "107202500904078042967",
-      "id": 4
-    },
-    {
-      "title": "Hi reuse",
-      "description": "hello there",
-      "userId": "107202500904078042967",
-      "id": 5
-    },
-    {
       "title": "do you like potato",
       "description": "how to cook potatoes haLLL",
       "id": 6
     },
     {
-      "title": "test patch",
-      "description": "test patch request - -> after patch",
+      "title": "Delete",
+      "description": "Delete heheh",
       "userId": "107202500904078042967",
-      "id": 7
+      "id": 8
+    },
+    {
+      "title": "afff",
+      "description": "gggg",
+      "userId": "107202500904078042967",
+      "id": 9
     }
   ]
 }
