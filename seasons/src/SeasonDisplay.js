@@ -4,16 +4,16 @@ const SeasonConfig = {
   Summer: {
     text: "Let's head to beach!",
     iconName: "sun",
-    seasonText: "Summer"
+    seasonText: "Summer",
   },
   Winter: {
     text: "Burrr, it's chilly",
     iconName: "snowflake",
-    seasonText: "Winter"
-  }
+    seasonText: "Winter",
+  },
 };
 
-const SeasonDisplay = props => {
+const SeasonDisplay = (props) => {
   const month = new Date().getMonth();
   const season = getSeason(props.lat, month);
   const icon =
