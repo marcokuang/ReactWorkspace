@@ -2,22 +2,11 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 import SeasonDisplay from "../SeasonDisplay";
 import Spinner from "../Spinner";
+import useLocation from "./useLocation";
 
 const App = () => {
-  // initialize the props in the state
-  const [lat, setLat] = useState(null);
-  const [errMessage, setErrMessage] = useState("");
+  const [lat, errMessage] = useLocation();
 
-  useEffect(() => {
-    window.navigator.geolocation.getCurrentPosition(
-      (position) => {
-        setLat(position.coords.latitude);
-      },
-      (err) => {
-        setErrMessage(err.message);
-      }
-    );
-  }, []);
   // the empty array [] means only try to run the function once in total for the entire
   // life cycle
 
