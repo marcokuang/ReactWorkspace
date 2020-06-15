@@ -29,7 +29,6 @@ class AddTodo extends React.Component {
           {" "}
           Add Todo
         </button>
-        {this.state.input}
       </div>
     );
   }
