@@ -8,34 +8,26 @@ class Filters extends React.Component {
     this.props.setFilter(filter);
   };
 
+  renderButton(buttonType) {
+    return (
+      <button
+        className={`ui button ${
+          this.props.currentFilter === buttonType ? "active" : ""
+        }`}
+        onClick={() => this.onFilterClick(buttonType)}
+      >
+        {buttonType}
+      </button>
+    );
+  }
+
   render() {
     console.log(this.props.currentFilter);
     return (
       <div className={"ui buttons"}>
-        <button
-          className={`ui button ${
-            this.props.currentFilter === "all" ? "active" : ""
-          }`}
-          onClick={() => this.onFilterClick("all")}
-        >
-          all
-        </button>
-        <button
-          className={`ui button ${
-            this.props.currentFilter === "completed" ? "active" : ""
-          }`}
-          onClick={() => this.onFilterClick("completed")}
-        >
-          completed
-        </button>
-        <button
-          className={`ui button ${
-            this.props.currentFilter === "incomplete" ? "active" : ""
-          }`}
-          onClick={() => this.onFilterClick("incomplete")}
-        >
-          incomplete
-        </button>
+        {this.renderButton("all")}
+        {this.renderButton("completed")}
+        {this.renderButton("incomplete")}
       </div>
     );
   }

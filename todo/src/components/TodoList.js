@@ -26,7 +26,13 @@ class TodoList extends React.Component {
 
     return (
       <div className="ui form">
-        <div className="grouped fields">{todoList}</div>
+        <div className="grouped fields">
+          {todoList.length === 0 ? (
+            <div className="field">No Todos! Yay!</div>
+          ) : (
+            todoList
+          )}
+        </div>
       </div>
     );
   }

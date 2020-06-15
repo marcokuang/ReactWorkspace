@@ -5,7 +5,7 @@ import { toggleTodo } from "../actions";
 class TodoItem extends React.Component {
   onCheckboxClicked = () => {
     const todo = this.props.value;
-    this.props.toggleTodo({ ...todo, completed: !todo.completed });
+    this.props.toggleTodo(todo.id);
   };
   render() {
     const todo = this.props.value;

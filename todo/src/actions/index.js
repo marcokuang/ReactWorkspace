@@ -1,5 +1,4 @@
 import { ADD_TODO, TOGGLE_TODO, SET_FILTER } from "./actionTypes";
-import { COMPLETED, INCOMPLETE } from "../components/todoTypes";
 
 let nextTodoId = 3;
 let userId = 0;
@@ -16,13 +15,11 @@ export const addTodo = (todo) => {
   };
 };
 
-export const toggleTodo = (todo) => {
+export const toggleTodo = (todoId) => {
   console.log("toggle action is called");
   return {
     type: TOGGLE_TODO,
-    payload: {
-      ...todo,
-    },
+    payload: todoId,
   };
 };
 

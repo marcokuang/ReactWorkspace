@@ -32,7 +32,10 @@ export default (state = initState, action) => {
     case TOGGLE_TODO: {
       return {
         ...state,
-        [action.payload.id]: action.payload,
+        [action.payload]: {
+          ...state[action.payload],
+          completed: !state[action.payload].completed,
+        },
       };
     }
     default: {
