@@ -21,7 +21,8 @@ const initState = _.mapKeys(
 
 console.log(initState);
 
-export default (state = initState, action) => {
+// testing calling another reducer inside the reducer
+const singleTodoReducer = (state, action) => {
   switch (action.type) {
     case ADD_TODO: {
       return {
@@ -37,6 +38,19 @@ export default (state = initState, action) => {
           completed: !state[action.payload].completed,
         },
       };
+    }
+    default:
+      return state;
+  }
+};
+
+export default (state = initState, action) => {
+  switch (action.type) {
+    case ADD_TODO: {
+      return singleTodoReducer(state, action);
+    }
+    case TOGGLE_TODO: {
+      return singleTodoReducer(state, action);
     }
     default: {
       return state;

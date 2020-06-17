@@ -16,7 +16,11 @@ class TodoItem extends React.Component {
           defaultChecked={todo.completed}
           onChange={this.onCheckboxClicked}
         />
-        <label>{todo.title}</label>
+        <label
+          style={{ textDecoration: todo.completed ? "line-through" : "none" }}
+        >
+          {todo.title}
+        </label>
       </div>
     );
   }
