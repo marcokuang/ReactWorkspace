@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import _ from "lodash";
-import { toggleTodo } from "../actions";
 import TodoItem from "./TodoItem";
 
 class TodoList extends React.Component {
