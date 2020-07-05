@@ -2,9 +2,13 @@ import React from "react";
 import { mount } from "enzyme";
 // import App from "components/App";
 import CommentBox from "components/CommentBox";
-import { createStore } from "redux";
-import { Provider } from "react-redux";
-import reducers from "../reducers";
+import Root from "Root";
+
+//import Redux related helper functions to add redux tests
+// NOTE: it is no longer needed after refactoring the Root component
+// import { createStore } from "redux";
+// import { Provider } from "react-redux";
+// import reducers from "../reducers";
 
 // componnet to be mounted to the JSDOM
 let wrapped;
@@ -12,9 +16,9 @@ let wrapped;
 beforeEach(() => {
   // set up the tests by mounting the component to the JSDOM
   wrapped = mount(
-    <Provider store={createStore(reducers)}>
+    <Root>
       <CommentBox />
-    </Provider>
+    </Root>
   );
 });
 
