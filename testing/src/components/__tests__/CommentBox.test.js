@@ -31,7 +31,7 @@ it("shows a text area and a submit button", () => {
   // asserts the text area exists on the DOM
   expect(wrapped.find("textarea").length).toEqual(1);
   // asserts the button exists on the DOM
-  expect(wrapped.find("button").length).toEqual(1);
+  expect(wrapped.find("button").length).toEqual(2);
 });
 
 describe("the text area", () => {

@@ -5,11 +5,16 @@ function extractComments(comments) {
     return [];
   }
 
-  const results = comments.reduce((accu, current) => {
-    return accu.concat(current.name);
-  }, []);
+  const t0 = performance.now();
+  // const res = comments.reduce((accu, current) => {
+  //   return accu.concat(current.name);
+  // }, []);
 
-  return results;
+  const res = comments.map((comment) => comment.name);
+  const t1 = performance.now();
+
+  console.log(`Call to doSomething took ${t1 - t0} milliseconds.`);
+  return res;
 }
 
 export default (state = [], action) => {
