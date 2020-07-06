@@ -12,6 +12,7 @@ class CommentList extends React.Component {
     //console.log(this.props.comments);
     return (
       <div>
+        <h4>Comment List</h4>
         <ul>{this.renderComments()}</ul>
       </div>
     );
