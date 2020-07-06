@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { saveComment } from "../actions";
+import { saveComment, fetchComments } from "../actions";
 
 class CommentBox extends React.Component {
   state = { comment: "" };
@@ -15,17 +15,25 @@ class CommentBox extends React.Component {
     this.setState({ comment: "" });
   };
 
+  handleFetchButtonClicked = (event) => {
+    event.preventDefault();
+    this.props.fetchComments();
+  };
+
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
         <h4>Add a Comment</h4>
         <textarea value={this.state.comment} onChange={this.handleChange} />
         <div>
-          <button>Submit Comment</button>
+          <button type="submit">Submit Comment</button>
+          <button onClick={this.handleFetchButtonClicked}>
+            Fetch Comments
+          </button>
         </div>
       </form>
     );
   }
 }
 
-export default connect(null, { saveComment })(CommentBox);
+export default connect(null, { saveComment, fetchComments })(CommentBox);
