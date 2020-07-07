@@ -8,15 +8,17 @@ export function saveComment(comment) {
   };
 }
 
-export const fetchComments = () => async (dispatch) => {
-  await axios
+export const fetchComments = () => (dispatch) => {
+  axios
     .get("https://jsonplaceholder.typicode.com/comments")
     .then(({ data }) => {
-      console.log("Fetch request completes");
-      dispatch({
-        type: FETCH_COMMENTS,
-        payload: data,
-      });
+      setTimeout(() => {
+        console.log("A second has passed!, dispatching action now ^.^");
+        dispatch({
+          type: FETCH_COMMENTS,
+          payload: data,
+        });
+      }, 1000);
     })
     .catch((err) => {
       console.log(`ERROR >>> Action Creator >>> ${err}`);

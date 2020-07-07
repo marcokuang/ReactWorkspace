@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { createStore, compose, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import reducers from "reducers";
+import async from "middlewares/async";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -14,7 +15,7 @@ export default ({ initState = {}, children }) => {
       store={createStore(
         reducers,
         initState,
-        composeEnhancers(applyMiddleware(thunk))
+        composeEnhancers(applyMiddleware(async))
       )}
     >
       {children}
