@@ -1,6 +1,12 @@
 // it's the user model class
 const User = require("../models/user");
-const e = require("express");
+const jwt = require("jwt-simple");
+const config = require("../config");
+
+function tokenForUser(user) {
+  const timestamp = new Date().getTime();
+  return jwt.encode({ sub: user.id, iat: timestamp }, config.secret);
+}
 
 exports.signup = function (req, res, next) {
   //res.send({ success: "true" });
@@ -47,6 +53,13 @@ exports.signup = function (req, res, next) {
       return next(err);
     }
     // respond to request indicating the user was created
-    res.json({ success: true });
+    res.json({ token: tokenForUser(user) });
   });
+};
+
+exports.signin = function (req, res, next) {
+  // user has already had their email and password authenticated
+  // we just need to give them a token
+  // the user object is supplied by the password middleware
+  res.send({ token: tokenForUser(req.user) });
 };
