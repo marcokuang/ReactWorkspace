@@ -5,9 +5,13 @@ import { compose } from "redux";
 import * as actions from "../../actions";
 
 class Signup extends React.Component {
+  navigateToFeature = () => {
+    this.props.history.push("/feature");
+  };
+
   handleOnFormSubmit = (formProps) => {
     console.log(formProps);
-    this.props.signUp(formProps);
+    this.props.signUp(formProps, this.navigateToFeature);
   };
 
   render() {

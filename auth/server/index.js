@@ -17,6 +17,7 @@ mongoose.connect("mongodb://localhost:auth/auth", {
 const app = express();
 app.use(morgan("combined"));
 app.use(bodyParser.json({ type: "*/*" }));
+// it tells server to accept traffic from all
 app.use(cors());
 router(app);
 //app.get("/", (req, response) => response.redirect("/login"));

@@ -8,7 +8,11 @@ const Init_state = {
 export default (state = Init_state, action) => {
   switch (action.type) {
     case SIGN_UP:
-      return state;
+      return { ...state, authenticated: action.payload };
+    case SIGN_IN:
+      return { ...state, authenticated: action.payload };
+    case SIGN_OUT:
+      return { ...state, authenticated: "" };
     default:
       return state;
   }
