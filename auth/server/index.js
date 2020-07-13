@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const router = require("./router");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 // db setup
 mongoose.connect("mongodb://localhost:auth/auth", {
@@ -16,9 +17,10 @@ mongoose.connect("mongodb://localhost:auth/auth", {
 const app = express();
 app.use(morgan("combined"));
 app.use(bodyParser.json({ type: "*/*" }));
+app.use(cors());
 router(app);
 //app.get("/", (req, response) => response.redirect("/login"));
 // server setup
-const port = 3000;
+const port = 4000;
 const server = http.createServer(app);
 server.listen(port, () => console.log(`Example app listening at port ${port}`));
