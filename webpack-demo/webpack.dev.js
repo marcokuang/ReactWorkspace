@@ -7,7 +7,7 @@ module.exports = merge(common, {
     rules: [
       {
         // test is regular expression
-        test: /.css$/,
+        test: /.scss$/,
         use: [
           "style-loader", // 3. inject stypes into DOM
           "css-loader", //2. turns css into commonjs
@@ -17,7 +17,7 @@ module.exports = merge(common, {
     ],
   },
   output: {
-    filename: "main.js",
+    filename: "[name].js",
     path: path.resolve(__dirname, "dist"),
   },
 });
