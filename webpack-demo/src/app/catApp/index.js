@@ -51,6 +51,7 @@ let octopus = {
     model.init();
     listView.init();
     catView.init();
+    adminView.init();
   },
   getCats: function () {
     return model.getCats();
@@ -64,14 +65,71 @@ let octopus = {
   getSelectedCat: function () {
     return model.getSelectedCat();
   },
+  reset: function () {
+    adminView.reset();
+    catView.render();
+    listView.render();
+  },
+};
+
+let adminView = {
+  init: function () {
+    this.adminButton = document.getElementById("adminButton");
+    this.adminForm = document.getElementById("adminForm");
+    this.adminForm.style.visibility = "hidden";
+    this.adminButton.addEventListener("click", () => {
+      // console.log(this.adminForm.style);
+      if (this.adminForm.style.visibility === "hidden") {
+        this.adminForm.style.visibility = "visible";
+      } else {
+        this.adminForm.style.visibility = "hidden";
+      }
+    });
+
+    this.populateFormValues();
+
+    // attach event listeners to buttons and form
+    this.adminForm.onsubmit = this.onFormSubmit;
+    document
+      .getElementById("formCancelButton")
+      .addEventListener("click", (e) => {
+        e.preventDefault();
+        this.reset();
+      });
+  },
+  populateFormValues: function () {
+    document.getElementById("formName").value = octopus.getSelectedCat().name;
+    document.getElementById("formURL").value = octopus.getSelectedCat().url;
+    document.getElementById(
+      "formCounts"
+    ).value = octopus.getSelectedCat().counts;
+  },
+  onFormSubmit: function (event) {
+    event.preventDefault();
+    let cat = octopus.getSelectedCat();
+    cat.name = document.getElementById("formName").value;
+    cat.url = document.getElementById("formURL").value;
+    cat.counts = document.getElementById("formCounts").value;
+    // update the catView
+    octopus.reset();
+  },
+  reset: function () {
+    this.adminForm.style.visibility = "hidden";
+    this.populateFormValues();
+  },
 };
 
 let listView = {
   init: function () {
+    this.render();
+  },
+  render: function () {
     this.constructListUsing(octopus.getCats());
   },
   constructListUsing: function (cats) {
     const list = document.getElementById("catList");
+    // initialize the list element
+    list.innerHTML = "";
     const frag = document.createDocumentFragment();
     const wrapper = document.createElement("ul");
     wrapper.className = "list-group";
@@ -83,6 +141,7 @@ let listView = {
         // when the cat from the menu list is clicked, it calls the controllers to set the selected cat
         // during init, the onClick listener function has the context of the cat, thanks to closure
         octopus.setSelectedCat(cat);
+        octopus.reset();
       });
       wrapper.appendChild(childNode);
     });
