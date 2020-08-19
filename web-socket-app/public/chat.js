@@ -16,6 +16,8 @@ room.addEventListener("change", (e) => {
 });
 
 sendBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  console.log("ButtonClick");
   socket.emit("chat", { message: message.value, userName: userName.value });
   socket.emit("finishTyping", { message: userName.value });
   message.value = "";
@@ -28,7 +30,8 @@ message.addEventListener("keypress", (e) => {
 message.addEventListener("keyup", (e) => {
   if (e.keyCode === 13) {
     e.preventDefault();
-    sendBtn.click();
+    console.log("Enter pressed");
+    // sendBtn.click();
   }
 });
 
@@ -40,9 +43,18 @@ socket.on("connect", (data) => {
 
 socket.on("chat", (data) => {
   console.log(data);
-  messages.innerHTML = data
-    .map((msg) => `<p><strong>${msg.userName}:</strong>  ${msg.message}</p>`)
-    .join("");
+  let fragment = document.createDocumentFragment();
+  let HTMLData = data.map((msg) => {
+    let node = document.createElement("div");
+    node.className = "message";
+    node.innerHTML = `<p><strong>${msg.userName}:</strong>  ${msg.message}</p>`;
+    fragment.appendChild(node);
+    return node;
+  });
+  if (HTMLData.length > 0) {
+    messages.replaceChildren(fragment);
+  }
+  console.log(fragment.childElementCount);
 });
 
 socket.on("typing", (data) => {

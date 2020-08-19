@@ -3,22 +3,48 @@
   <head>
     <meta charset="utf-8" />
     <script src="/socket.io/socket.io.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
     <title>WebSocket Tutorial</title>
   </head>
-  <body>
-    <div>
-      <label>Chat Room</label>
-      <select id="room" name="room">
-        <option value="room123">Room123</option>
-        <option value="protected">protected</option>
-        <option value="secret">secret</option>
-      </select>
-      <input id="userName" type="text" placeholder="UserName" />
-      <input id="message" type="text" placeholder="Message" />
-      <button id="send">Send</button>
+  <body class="container">
+    <form>
+      <div class="form-group row">
+        <label for="room" class="col-sm-2 col-form-label">Chat Room</label>
+        <select class="form-control col-sm-4" id="room" name="room">
+          <option value="room123">Room123</option>
+          <option value="protected">protected</option>
+          <option value="secret">secret</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-sm-3">
+          <input
+            class="form-control"
+            id="userName"
+            type="text"
+            placeholder="UserName"
+          />
+        </div>
+        <div class="form-group col-sm-7">
+          <input
+            class="form-control"
+            id="message"
+            type="text"
+            placeholder="Message"
+          />
+        </div>
+        <div class="form-group col-sm-2">
+          <button class="btn btn-primary" id="send">Send</button>
+        </div>
+      </div>
       <div id="messages"></div>
       <div id="typing"></div>
-    </div>
+    </form>
     <script src="/chat.js"></script>
   </body>
   <html></html>
