@@ -1,4 +1,4 @@
-import { SIGN_IN, SIGN_OUT, SIGN_UP } from "../actions/types";
+import { FEATURE, SIGN_IN, SIGN_OUT, SIGN_UP } from "../actions/types";
 
 const Init_state = {
   authenticated: "",
@@ -12,7 +12,9 @@ export default (state = Init_state, action) => {
     case SIGN_IN:
       return { ...state, authenticated: action.payload };
     case SIGN_OUT:
-      return { ...state, authenticated: "" };
+      return { ...state, authenticated: "", features: "" };
+    case FEATURE:
+      return { ...state, features: action.payload };
     default:
       return state;
   }

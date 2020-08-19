@@ -1,7 +1,7 @@
 const passport = require("passport");
 const User = require("../models/user");
 const config = require("../config");
-const { Strategy, ExtractJwt } = require("passport-jwt");
+const { Strategy: JWTStrategy, ExtractJwt } = require("passport-jwt");
 const LocalStrategy = require("passport-local");
 
 exports.start = function () {
@@ -48,10 +48,11 @@ exports.start = function () {
   };
   console.log("setting up JWT Strategy");
   //create JWT strategy
-  const jwtLogin = new Strategy(jwtOptions, (payload, done) => {
+  const jwtLogin = new JWTStrategy(jwtOptions, (payload, done) => {
     // check if the user ID in the payload exists in db
     // if it does, call done with user object
     // otherwise, call done without a user object
+    console.log("\tPayload received at passport: ", payload);
     User.findById(payload.sub, (err, user) => {
       if (err) {
         return done(err, false);

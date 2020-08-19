@@ -1,0 +1,25 @@
+<!-- public/index.html -->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="/socket.io/socket.io.js"></script>
+    <title>WebSocket Tutorial</title>
+  </head>
+  <body>
+    <div>
+      <label>Chat Room</label>
+      <select id="room" name="room">
+        <option value="room123">Room123</option>
+        <option value="protected">protected</option>
+        <option value="secret">secret</option>
+      </select>
+      <input id="userName" type="text" placeholder="UserName" />
+      <input id="message" type="text" placeholder="Message" />
+      <button id="send">Send</button>
+      <div id="messages"></div>
+      <div id="typing"></div>
+    </div>
+    <script src="/chat.js"></script>
+  </body>
+  <html></html>
+</html>

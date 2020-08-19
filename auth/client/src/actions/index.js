@@ -1,6 +1,12 @@
 import axios from "axios";
 import * as ActionType from "../actions/types";
 
+const authHeader = (getState) => {
+  const { auth } = getState();
+  const userToken = auth.authenticated;
+  return { Authorization: userToken };
+};
+
 export const signUp = (user, callback) => (dispatch) => {
   axios
     .post("http://localhost:4000/signup", user)
@@ -51,4 +57,26 @@ export const signOut = () => {
     type: ActionType.SIGN_OUT,
     payload: "",
   };
+};
+
+export const loadFeature = (callback) => (dispatch, getState) => {
+  axios
+    .get("http://localhost:4000/feature", { headers: authHeader(getState) })
+    .then((response) => {
+      console.log(response);
+      dispatch({
+        type: ActionType.FEATURE,
+        payload: response.data,
+      });
+      if (typeof callback === "function") {
+        callback();
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      dispatch({
+        type: ActionType.AUTH_ERROR,
+        payload: "An Error has occurred while fetching features",
+      });
+    });
 };
