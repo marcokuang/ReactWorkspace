@@ -1,0 +1,16 @@
+{
+  "name": "ts-framework",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.0.2"
+  },
+  "scripts": {
+    "start:parcel": "parcel index.html -p 3000 --hmr-port 1234",
+    "start:db": "json-server -w db.json -p 3001"
+  },
+  "dependencies": {
+    "axios": "^0.20.0"
+  }
+}
