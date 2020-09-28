@@ -1,25 +1,11 @@
-import { User } from "./models/User";
-// import axios from "axios";
+import { UserForm } from "./views/UserForm";
+import { UserProps, User } from "./models/User";
 
-let user1 = new User({ name: "marco", age: 20 });
-user1.set({ name: "new Marco", age: 18 });
-user1.set({ name: "Erika" });
-let empty = new User({ id: 1 });
-console.log(empty);
+const user1 = User.buildUser({ id: 1 });
+user1.fetch();
+console.log(user1.get("name"));
 
-// declare global {
-//   interface Window {
-//     myUser: User;
-//   }
-// }
-declare global {
-  var myUser: User;
-}
-window.myUser = empty;
-empty.on("click", () => {
-  console.log("clicked!");
-});
-
-// axios.post("http://localhost:3001/users", { name: "old marco", age: 20 });
-empty.fetch();
-console.log(user1.get("name"), user1.get("age"));
+const userForm = new UserForm(document.getElementById("root"), user1);
+setTimeout(() => {
+  userForm.render();
+}, 600);

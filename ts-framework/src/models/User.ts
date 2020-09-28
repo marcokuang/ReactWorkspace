@@ -1,66 +1,42 @@
-import axios, { AxiosResponse } from "axios";
+import { Model } from "./Model";
+import { Attributes } from "./Attributes";
+import { ApiSync } from "./ApiSync";
+import { Eventing } from "./Eventing";
+import { Collection } from "./Collection";
 
-interface UserProps {
+export interface UserProps {
   // optional property
   id?: number;
   name?: string;
   age?: number;
 }
 
-// type alias
-type Callback = () => void;
+/**
+ *  Demo, User class will utilize the composition concept
+ *
+ *  attributes: Attributes => Gives ability to store properties tied to the user (name, age, etc)
+ *  events: Events => Gives ability to tell other parts of app whenever data tied to a particular user is changes
+ *  sync: Sync => Give ability to save the person data to remote server, then get in the future
+ *
+ */
 
-export class User {
-  events: {
-    [myKey: string]: Callback[];
-  } = {};
+const rootUrl = "http://localhost:3001/users";
 
-  constructor(private data: UserProps) {}
-
-  get(propName: string): number | string {
-    return this.data[propName];
+export class User extends Model<UserProps> {
+  static buildUser(attrs: UserProps): User {
+    return new User(
+      new Attributes<UserProps>(attrs),
+      new Eventing(),
+      new ApiSync<UserProps>(rootUrl)
+    );
   }
 
-  set(update: UserProps): void {
-    Object.assign(this.data, update);
+  static buildUserCollection(): Collection<User, UserProps> {
+    return new Collection<User, UserProps>(rootUrl, User.buildUser);
   }
 
-  on(eventName: string, callback: Callback) {
-    // if (this.events[eventName]) {
-    //   this.events[eventName].push(callback);
-    // } else {
-    //   this.events[eventName] = [];
-    //   this.events[eventName].push(callback);
-    // }
-    const handlers = this.events[eventName] || [];
-    handlers.push(callback);
-    this.events[eventName] = handlers;
-  }
-
-  trigger(eventName: string): void {
-    const handlers = this.events[eventName];
-    if (!handlers || handlers.length === 0) {
-      return;
-    }
-
-    handlers.forEach((callback) => {
-      callback();
-    });
-  }
-
-  fetch(): void {
-    const serverGetString = `http://localhost:3003/users/${this.get("id")}`;
-    axios.get(serverGetString).then((response: AxiosResponse): void => {
-      this.set(response.data);
-    });
-  }
-
-  save(): void {
-    const id = this.get("id");
-    if (id) {
-      axios.put(`http://localhost:3003/users/${id}`, this.data);
-    } else {
-      axios.post(`http://localhost:3003/users`, this.data);
-    }
+  setRandomAge(): void {
+    const age = Math.random() * 100;
+    this.set({ age: Math.floor(age) });
   }
 }
