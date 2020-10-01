@@ -1,11 +1,11 @@
-import { UserForm } from "./views/UserForm";
+import { UserEdit } from "./views/UserEdit";
 import { UserProps, User } from "./models/User";
 
-const user1 = User.buildUser({ id: 1 });
-user1.fetch();
-console.log(user1.get("name"));
+const user1 = User.buildUser({ name: "HEHE", age: 9 });
+const root = document.getElementById("root");
 
-const userForm = new UserForm(document.getElementById("root"), user1);
+const userEdit = new UserEdit(root, user1);
 setTimeout(() => {
-  userForm.render();
+  userEdit.render();
+  console.log(userEdit);
 }, 600);
