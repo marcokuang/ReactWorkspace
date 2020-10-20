@@ -27,17 +27,16 @@ app.get("*", (req, res) => {
 
   // logic to initialize the store and pass to the renderer
   // check the path in the request router and determine what components are needed as dependencies from the routes config object.
-  console.log(matchRoutes(routes, req.path));
+  // console.log(matchRoutes(routes, req.path));
 
   // the loaddata function from the react route config object attached to the path will be executed
   const promises = matchRoutes(routes, req.path).map(({ route }) => {
     return route.loadData ? route.loadData(store) : null;
   });
 
-  console.log(promises);
-
   // after the store is fully configured, pass to the renderer to render the html contents
   Promise.all(promises).then(() => {
+    console.log(promises);
     res.send(renderer(req, store));
   });
 });

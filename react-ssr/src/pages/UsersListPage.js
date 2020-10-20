@@ -4,13 +4,19 @@ import { fetchUsers } from "../client/actions";
 
 class UsersList extends Component {
   componentDidMount() {
+    console.log("loading data from component");
     this.props.fetchUsers();
   }
 
   renderUsers() {
-    return this.props.users.map((user) => {
-      return <li key={user.id}>{user.name}</li>;
-    });
+    const result = this.props.users ? (
+      this.props.users.map((user) => {
+        return <li key={user.id}>{user.name}</li>;
+      })
+    ) : (
+      <div>Loading...</div>
+    );
+    return result;
   }
 
   render() {
