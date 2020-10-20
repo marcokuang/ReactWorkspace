@@ -1,4 +1,5 @@
 import React from "react";
+import App from "./App";
 import Home from "../pages/HomePage";
 import UsersList from "../pages/UsersListPage";
 
@@ -13,12 +14,17 @@ import UsersList from "../pages/UsersListPage";
 
 export default [
   {
-    path: "/",
-    exact: true,
-    ...Home,
-  },
-  {
-    path: "/users",
-    ...UsersList,
+    ...App,
+    routes: [
+      {
+        path: "/",
+        exact: true,
+        ...Home,
+      },
+      {
+        path: "/users",
+        ...UsersList,
+      },
+    ],
   },
 ];
