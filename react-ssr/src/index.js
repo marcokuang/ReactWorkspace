@@ -9,6 +9,8 @@ import { matchRoutes } from "react-router-config";
 import routes from "./client/Routes";
 import renderer from "./helpers/renderer";
 import createStore from "./helpers/createStore";
+import { render } from "react-dom";
+import { connect } from "react-redux";
 
 const app = express();
 app.use(
@@ -30,15 +32,33 @@ app.get("*", (req, res) => {
   // console.log(matchRoutes(routes, req.path));
 
   // the loaddata function from the react route config object attached to the path will be executed
-  const promises = matchRoutes(routes, req.path).map(({ route }) => {
-    return route.loadData ? route.loadData(store) : null;
-  });
+  const promises = matchRoutes(routes, req.path)
+    .map(({ route }) => {
+      return route.loadData ? route.loadData(store) : null;
+    })
+    // wrap the promise in another promise. Promise.all method will then see all the outter promise as resolved even something wrong happened
+    .map((promise) => {
+      if (promise) {
+        return new Promise((resolve, reject) => {
+          promise.then(resolve).catch(resolve);
+        });
+      }
+    });
 
   // after the store is fully configured, pass to the renderer to render the html contents
-  Promise.all(promises).then(() => {
-    console.log(promises);
-    res.send(renderer(req, store));
-  });
+  const renderContent = () => {
+    const context = {};
+    const content = renderer(req, store, context);
+    if (context.url) {
+      return res.redirect(301, context.url);
+    }
+    if (context.notFound) {
+      res.status(404);
+    }
+    res.send(content);
+  };
+
+  Promise.all(promises).then(renderContent);
 });
 
 app.listen(3000, () => {
