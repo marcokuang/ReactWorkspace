@@ -1,0 +1,106 @@
+@import "./mixins.scss";
+
+.modal-product-card {
+  border: lightgray;
+  border-radius: 0.5rem;
+  border-style: solid;
+  border-width: thin;
+  //padding: 1rem;
+  margin: 1.5rem;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+
+  &.selected {
+    border-color: #37b2aa;
+  }
+
+  &__select-button {
+    flex-basis: 10%;
+    text-align: center;
+  }
+
+  &__details {
+    flex-basis: 90%;
+  }
+
+  &__content {
+    margin-right: 1rem;
+  }
+
+  &__pledge-section {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-top: solid 1px lightgray;
+    padding: 1rem;
+
+    & > .pledge-section__label {
+      color: #646464;
+    }
+
+    & > .pledge-section__input-wrapper {
+      border: lightgray 1px solid;
+      border-radius: 10rem;
+      margin-left: auto;
+      margin-right: 3rem;
+      // height: 3rem;
+      padding: 1rem;
+      // text-align: center;
+      font-weight: 700;
+      color: black;
+      position: relative;
+      text-align: center;
+
+      & > .pledge-section__input {
+        border: none;
+        outline: none;
+        width: 6rem;
+        text-align: center;
+      }
+
+      &::before {
+        content: "$";
+      }
+    }
+  }
+
+  &--first {
+    & > .modal-product-card__pledge {
+      margin-left: 3rem;
+      margin-right: auto;
+    }
+  }
+
+  &--first,
+  &--last {
+    display: flex;
+    justify-content: space-between;
+    align-content: baseline;
+    align-items: center;
+  }
+
+  &--second,
+  &--last {
+    @include text-lightgrey;
+  }
+
+  &__inventory {
+    font-size: 2rem;
+    font-weight: 700;
+    color: black;
+    padding-right: 0.5rem;
+  }
+
+  &__inventory-container {
+    display: flex;
+    align-items: center;
+    margin-right: 3rem;
+  }
+
+  &--ended {
+    opacity: 0.5;
+  }
+}

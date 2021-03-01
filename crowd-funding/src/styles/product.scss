@@ -1,0 +1,41 @@
+@import "./mixins.scss";
+.product-card {
+  border: lightgray;
+  border-radius: 0.5rem;
+  border-style: solid;
+  border-width: thin;
+  padding: 1rem;
+  margin: 1.5rem;
+
+  display: flex;
+  flex-direction: column;
+
+  &--first,
+  &--last {
+    display: flex;
+    justify-content: space-between;
+    align-content: baseline;
+    align-items: center;
+  }
+
+  &--second,
+  &--last {
+    @include text-lightgrey;
+  }
+
+  &__inventory {
+    font-size: 2rem;
+    font-weight: 700;
+    color: black;
+    padding-right: 0.5rem;
+  }
+
+  &__inventory-container {
+    display: flex;
+    align-items: center;
+  }
+
+  &--ended {
+    opacity: 0.5;
+  }
+}

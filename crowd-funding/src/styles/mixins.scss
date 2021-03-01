@@ -1,0 +1,31 @@
+@mixin body-size {
+  max-width: 60%;
+  margin-left: 20%;
+  margin-right: 20%;
+  &:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+
+  background-color: white;
+  border-radius: 0.6rem;
+  transform: translateY(-2rem);
+}
+
+@mixin grey-border {
+  border-color: #f6f6f6;
+  border-width: 2px;
+  border-style: solid;
+}
+
+@mixin button {
+  height: 3rem;
+  // width: 30%;
+  padding: 0 2rem;
+  border: none;
+  border-radius: 10rem;
+  cursor: pointer;
+}
+
+@mixin text-lightgrey {
+  color: rgb(100, 100, 100);
+}

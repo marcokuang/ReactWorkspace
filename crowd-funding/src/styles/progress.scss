@@ -1,0 +1,48 @@
+@use 'base';
+@import "./mixins.scss";
+.progress {
+  @include body-size;
+  @include grey-border;
+
+  &__bar-container {
+    position: relative;
+
+    background-color: rgb(226, 226, 226);
+    border-radius: 1rem;
+    z-index: 4;
+  }
+
+  & > div {
+    margin: 2rem;
+  }
+
+  &__bar {
+    background-color: #37b2aa;
+    width: 40%;
+    height: 0.5rem;
+    border-radius: 10px;
+    z-index: 5;
+  }
+
+  &__funds--current,
+  &__backers--number,
+  &__days--number {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  &__funds--goal,
+  &__backers--label,
+  &__days--label {
+    color: #8b8b8b;
+  }
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+
+  & > div {
+    flex-basis: 25%;
+  }
+}

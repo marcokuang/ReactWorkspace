@@ -1,0 +1,39 @@
+@import "./mixins.scss";
+
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  // text-align: center;
+  width: 100%;
+  background-color: #fafafa;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+button {
+  @include button;
+}
+
+.btn {
+  &-regular--green {
+    color: white;
+    background-color: #37b2aa;
+    // transition: all 2s;
+    &:hover {
+      transform: translateY(0.1rem);
+      background-color: #147b74;
+      box-shadow: 0 0.5rem 1rem rgba(240, 240, 240, 0.2);
+    }
+  }
+}
+
+.text--green {
+  color: #37b2aa;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
