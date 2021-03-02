@@ -7,6 +7,13 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Launch Todo - Chrome",
+      "request": "launch",
+      "type": "pwa-chrome",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}/todo"
+    },
+    {
       "name": "Python: Django",
       "type": "python",
       "request": "launch",
